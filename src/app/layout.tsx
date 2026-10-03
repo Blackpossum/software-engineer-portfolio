@@ -4,14 +4,14 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
 
-const Sans = Inter({
+const sans = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font--sans",
 });
 
-const Mono = JetBrains_Mono({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font--mono",
 });
 
 export const metadata: Metadata = {
@@ -22,11 +22,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      className={`${Sans.variable} ${Mono.variable} h-full antialiased`}
+      className={`${sans.variable} ${mono.variable}`}
       lang="en"
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

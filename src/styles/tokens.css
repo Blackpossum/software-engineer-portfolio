@@ -1,0 +1,21 @@
+:root {
+  --bg--base: #000000; /* bg/base */
+  --bg--surface: #0a0a0a; /* bg/surface */
+  --bg--raised: #1a1a1a; /* bg/raised */
+  --border: #2e2e2e; /* border */
+  --accent: #ccff33; /* accent */
+  --info: #38bdf8; /* info */
+  --success: #22c55e; /* success */
+  --error: #f87171; /* error */
+  --text--primary: #ededed; /* text/primary */
+  --text--secondary: #d4d4d4; /* text/secondary */
+  --text--muted: #a1a1a1; /* text/muted */
+  --accent--hover: #d4ff66; /* accent/hover */
+  /* motion */
+  --fx-ease: cubic-bezier(
+    0.16,
+    1,
+    0.3,
+    1
+  ); /* expo-out feel, used by CSS transitions */
+}
