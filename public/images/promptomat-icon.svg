@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Promptomat Icon</title>
+  <desc>Custom P monogram based on the supplied Promptomat logo reference.</desc>
+  <rect width="256" height="256" rx="42" fill="#E0AC66"/>
+  <path
+    fill="#232222"
+    d="M64 46H128C167.8 46 196 70.8 196 104C196 136.4 171.2 160 137 160H124
+       C105.8 160 92 146.4 92 130C92 113.6 105.8 100 124 100H133
+       C143.8 100 152 92.6 152 82C152 70.6 143 64 130 64H96V194
+       C96 204.8 87.8 213 77 213C66.2 213 58 204.8 58 194V52
+       C58 48.6 60.6 46 64 46Z"/>
+</svg>
