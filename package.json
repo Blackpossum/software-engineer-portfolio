@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint:js": "eslint . --max-warnings=0 --no-warn-ignored",
-    "lint": "concurrently \"pnpm:lint:*\"",
     "lint:fix": "eslint --fix",
+    "lint": "concurrently \"pnpm:lint:*\"",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky"
