@@ -1,19 +1,79 @@
-@import "tailwindcss";
-@import "../styles/token.css";
-@import "../styles/site.css" layer(components);
+@import "../styles/tokens.css";
 
-@theme inline {
-  --color-base: var(--bg--base);
-  --color-surface: var(--bg--surface);
-  --color-raised: var(--bg--raised);
-  --color-accent: var(--accent);
-  --color-primary: var(--text--primary);
-  --color-secondary: var(--text--secondary);
-  --color-muted: var(--text--muted);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
 body {
   margin: 0;
-  background: var(--bg--base);
+  min-height: 100%;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: var(--font--sans);
   color: var(--text--secondary);
+  background-color: var(--bg--base);
+}
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  border: 0;
+}
+a {
+  background-color: transparent;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+h1 {
+  font-size: 38px;
+  line-height: 44px;
+  margin-top: 20px;
+}
+h2 {
+  font-size: 32px;
+  line-height: 36px;
+  margin-top: 20px;
+}
+h3 {
+  font-size: 24px;
+  line-height: 30px;
+  margin-top: 20px;
+}
+h4 {
+  font-size: 18px;
+  line-height: 24px;
+  margin-top: 10px;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-left: 40px;
+}
+section {
+  display: block;
+}
+.w-embed::before,
+.w-embed::after {
+  content: " ";
+  display: table;
+}
+.w-embed::after {
+  clear: both;
 }
