@@ -16,7 +16,8 @@
     "sync:kit": "node scripts/sync-kit.ts",
     "typecheck": "tsc --noEmit",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:e2e:local": "playwright test --project=chromium --project=firefox"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
