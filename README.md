@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Software Engineer Portfolio
 
-## Getting Started
+The React rebuild of my portfolio site: Next.js 16 (App Router), React 19 and TypeScript, with a GSAP motion layer. Every route is static, all copy lives in typed JSON, and every pull request runs the full check pipeline.
 
-First, run the development server:
+The rebuild is in progress. The design, decisions and feature specs are in [`docs/`](docs/).
+
+## Requirements
+
+- Node 22 or newer
+- pnpm (the version is pinned in `package.json`)
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The dev server runs on http://localhost:3000. For the production build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm build
+pnpm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Check it
 
-## Learn More
+| Command               | What it does                                                                                        |
+| --------------------- | --------------------------------------------------------------------------------------------------- |
+| `pnpm lint`           | ESLint, 0 warnings allowed                                                                          |
+| `pnpm format:check`   | Prettier                                                                                            |
+| `pnpm typecheck`      | TypeScript, strict                                                                                  |
+| `pnpm test:unit`      | Vitest: the content schema test                                                                     |
+| `pnpm test:e2e`       | Playwright against the production build, in Chromium, Firefox and WebKit                            |
+| `pnpm test:e2e:local` | The same, Chromium and Firefox only (for hosts that cannot run Playwright's WebKit, such as Fedora) |
 
-To learn more about Next.js, take a look at the following resources:
+Before the first end-to-end run, install the browsers with `pnpm exec playwright install`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+CI (`.github/workflows/ci.yml`) runs all of these on every pull request, plus a guard that fails if anything under `reference/` is tracked.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Content
 
-## Deploy on Vercel
+All visible copy is in `src/content/site.json` and `src/content/cases.json`. A Zod schema (`src/content/schema.ts`) validates both files, and the TypeScript types are inferred from it. A broken edit fails the unit test and the build, with the field named. For example: an unknown case link, a missing image, or an em dash.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`pnpm sync:kit` copies content, images, illustrations and the résumé from the local portfolio kit (`~/Downloads/portfolio-kit`, or set `PORTFOLIO_KIT`). Add `--dry-run` to preview the changes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Commits
+
+Conventional commits, checked by a commit-msg hook (commitlint). Lint-staged formats staged files before each commit.

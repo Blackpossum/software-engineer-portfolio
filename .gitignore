@@ -47,3 +47,9 @@ BUILD-GUIDE.md
 # Agent instruction files stay local (D-28)
 CLAUDE.md
 AGENTS.md
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
