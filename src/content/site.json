@@ -1,0 +1,490 @@
+{
+  "meta": {
+    "name": "Yosaphat Harwindra",
+    "shortName": "yosaphat",
+    "role": "Frontend engineer",
+    "location": "Surakarta (Solo), Indonesia",
+    "timezone": "UTC+7",
+    "email": "yosaphatharwindra@gmail.com",
+    "github": "https://github.com/Blackpossum",
+    "linkedin": "https://www.linkedin.com/in/yosaphat-harwindra-82aa54194",
+    "whatsapp": "https://wa.me/6285117764122",
+    "resumeUrl": "/resume.pdf"
+  },
+  "nav": {
+    "logo": {
+      "prefix": "~/",
+      "text": "yosaphat"
+    },
+    "links": [
+      {
+        "label": "Work",
+        "href": "/#work"
+      },
+      {
+        "label": "About",
+        "href": "/#about"
+      },
+      {
+        "label": "Journey",
+        "href": "/#journey"
+      },
+      {
+        "label": "Contact",
+        "href": "/#contact"
+      }
+    ],
+    "cta": {
+      "label": "Résumé ↓",
+      "href": "/resume.pdf"
+    }
+  },
+  "hero": {
+    "status": "Open to remote roles · UTC+7",
+    "headingLines": [
+      "I build interfaces",
+      "for systems that",
+      "move."
+    ],
+    "accentLineIndex": 2,
+    "intro": "Frontend engineer with 2 years shipping production React at Formulatrix — real-time robot fleet dashboards, a shared component library and internal platforms. Now growing into full-stack.",
+    "actions": [
+      {
+        "label": "View my work →",
+        "href": "#work",
+        "variant": "primary"
+      },
+      {
+        "label": "Get in touch",
+        "href": "#contact",
+        "variant": "secondary"
+      }
+    ],
+    "stack": "React · TypeScript · Three.js · Node.js · NestJS · PostgreSQL",
+    "cardCode": [
+      "// crafting solutions,",
+      "// one line at a time"
+    ],
+    "image": {
+      "src": "/images/hero-portrait.jpg",
+      "alt": "Portrait of Yosaphat Harwindra"
+    },
+    "location": "Surakarta, Indonesia"
+  },
+  "about": {
+    "id": "about",
+    "eyebrow": "01 — About",
+    "heading": "From the factory floor to the frontend.",
+    "paragraphs": [
+      "Before I wrote code for a living, I spent four years running packaging machines and leading shifts at PT Oji Sinarmas. That's where I learned to think in systems: how the parts move, where the load really sits, and what breaks first under pressure.",
+      "At Formulatrix I brought that mindset to React — real-time dashboards for lab robots, a component library shared across product teams, and internal tools people use every day.",
+      "Now I'm going deeper into backend and systems work with NestJS, Prisma and PostgreSQL, and tinkering with Linux and embedded hardware on the side."
+    ],
+    "image": {
+      "src": "/images/about-helmet.jpg",
+      "alt": "Yosaphat wearing a hard hat with a head-mounted camera"
+    },
+    "stats": [
+      {
+        "value": "3+ yrs",
+        "label": "In tech",
+        "sub": "2 yrs Formulatrix · 9 mo RevoU · 6 mo Binary Studio"
+      },
+      {
+        "value": "2 yrs",
+        "label": "Production React",
+        "sub": "at Formulatrix"
+      },
+      {
+        "value": "3",
+        "label": "Products shipped",
+        "sub": "Rover · Common UI · ESS"
+      },
+      {
+        "value": "4 yrs",
+        "label": "Industrial operations",
+        "sub": "machine operator → shift lead"
+      },
+      {
+        "value": "38",
+        "label": "Public repositories",
+        "sub": "github.com/Blackpossum"
+      }
+    ]
+  },
+  "journey": {
+    "id": "journey",
+    "eyebrow": "02 — Journey",
+    "heading": "Mechanical engineering → software.",
+    "milestones": [
+      {
+        "date": "2016 – 2019",
+        "title": "SMK St. Mikael Surakarta",
+        "role": "Vocational school · Mechanical Engineering",
+        "note": "Machining, technical drawing, and how physical systems fail.",
+        "current": false
+      },
+      {
+        "date": "2020 – 2024",
+        "title": "PT Oji Sinarmas Packaging",
+        "role": "Machine Operator → Acting Shift Leader",
+        "note": "Kept production lines running and stepped up to lead shifts.",
+        "current": false
+      },
+      {
+        "date": "Oct 2023 – Apr 2024",
+        "title": "RevoU",
+        "role": "Full-Stack Software Engineering",
+        "note": "Graduated with a score of 86.65 while still working full shifts.",
+        "current": false
+      },
+      {
+        "date": "Jul 2024 – May 2026",
+        "title": "Formulatrix",
+        "role": "Frontend Software Engineer",
+        "note": "React frontends for lab robotics, a shared UI library and internal tools.",
+        "current": false
+      },
+      {
+        "date": "2026",
+        "title": "Binary Studio Academy",
+        "role": "BSA 2026 · Team project",
+        "note": "Building Promptomat — a React + TypeScript monorepo — across frontend and backend.",
+        "current": true
+      }
+    ],
+    "callout": {
+      "date": "Oct 2023 – Jan 2024",
+      "text": "Studied full-stack engineering in the evenings while working full shifts at the packaging plant."
+    }
+  },
+  "skills": {
+    "id": "skills",
+    "eyebrow": "03 — Skills",
+    "heading": "Tools I reach for.",
+    "legend": [
+      "Daily drivers",
+      "Used"
+    ],
+    "groups": [
+      {
+        "num": "01",
+        "title": "Frontend",
+        "sub": "Where I've shipped the most.",
+        "chips": [
+          {
+            "label": "React",
+            "primary": true
+          },
+          {
+            "label": "TypeScript",
+            "primary": true
+          },
+          {
+            "label": "JavaScript (ES6+)",
+            "primary": false
+          },
+          {
+            "label": "Three.js / R3F",
+            "primary": true
+          },
+          {
+            "label": "Redux Toolkit",
+            "primary": false
+          },
+          {
+            "label": "MUI",
+            "primary": false
+          },
+          {
+            "label": "Tailwind CSS",
+            "primary": false
+          },
+          {
+            "label": "Storybook",
+            "primary": false
+          },
+          {
+            "label": "Vite",
+            "primary": false
+          }
+        ]
+      },
+      {
+        "num": "02",
+        "title": "Backend",
+        "sub": "Where I'm growing fastest.",
+        "chips": [
+          {
+            "label": "Node.js",
+            "primary": false
+          },
+          {
+            "label": "NestJS",
+            "primary": true
+          },
+          {
+            "label": "Express",
+            "primary": false
+          },
+          {
+            "label": "Prisma",
+            "primary": false
+          },
+          {
+            "label": "PostgreSQL",
+            "primary": true
+          },
+          {
+            "label": "REST API design",
+            "primary": false
+          },
+          {
+            "label": "WebSocket / SignalR",
+            "primary": false
+          }
+        ]
+      },
+      {
+        "num": "03",
+        "title": "Tooling & testing",
+        "sub": "How I keep things working.",
+        "chips": [
+          {
+            "label": "Jest",
+            "primary": true
+          },
+          {
+            "label": "Vitest",
+            "primary": false
+          },
+          {
+            "label": "Git & GitHub",
+            "primary": true
+          },
+          {
+            "label": "Docker",
+            "primary": false
+          },
+          {
+            "label": "pnpm monorepos",
+            "primary": false
+          },
+          {
+            "label": "Linux (Fedora)",
+            "primary": false
+          },
+          {
+            "label": "Postman",
+            "primary": false
+          }
+        ]
+      }
+    ],
+    "extra": [
+      {
+        "label": "Also used",
+        "value": "Python · Flask · Fastify · MySQL · Redis · SQLAlchemy"
+      },
+      {
+        "label": "Exploring",
+        "value": "Backend architecture · Linux internals · embedded hardware · systems programming"
+      }
+    ]
+  },
+  "work": {
+    "id": "work",
+    "eyebrow": "04 — Selected work",
+    "heading": "Things I've built and shipped.",
+    "meta": "5 case studies",
+    "featured": {
+      "href": "/work/rover",
+      "kicker": "Featured · Formulatrix",
+      "title": "Rover: robotic fleet dashboard",
+      "desc": "Real-time dashboard for a fleet of laboratory transport robots: a connection that heals itself, one UI for V4 and V6 hardware, and a reusable cabinet library.",
+      "chips": [
+        "React",
+        "Konva",
+        "SignalR",
+        "Redux Toolkit"
+      ],
+      "cta": "Read case study →",
+      "visual": "/illustrations/rover-fleet.svg"
+    },
+    "cards": [
+      {
+        "href": "/work/platform",
+        "kicker": "Formulatrix · Component library",
+        "title": "Fmlx Common UI",
+        "desc": "Formulatrix's shared React component library: a compound TreeView, stacking notifications, a one-time-code support login, and the start of its test suite.",
+        "chips": [
+          "React",
+          "MUI",
+          "Storybook",
+          "Jest"
+        ],
+        "cta": "Read case study →",
+        "visual": "/illustrations/card-platform.svg"
+      },
+      {
+        "href": "/work/ess",
+        "kicker": "Formulatrix · Internal app",
+        "title": "ESS review system",
+        "desc": "Internal employee review system: dashboards that follow the review period, kudos and criticism messages, and question rules that hold across every form.",
+        "chips": [
+          "React",
+          "Redux Toolkit",
+          "MUI X Charts",
+          ".NET 6"
+        ],
+        "cta": "Read case study →",
+        "visual": "/illustrations/card-ess.svg"
+      },
+      {
+        "href": "/work/promptomat",
+        "kicker": "Binary Studio Academy · Team",
+        "title": "Promptomat",
+        "desc": "Full-stack team project: single-use password reset links that leak nothing, a time-zone-aware logging streak, the Training hub, and the 403 access flow.",
+        "chips": [
+          "React",
+          "TypeScript",
+          "RTK Query",
+          "Fastify"
+        ],
+        "cta": "Read case study →",
+        "visual": "/illustrations/card-promptomat.svg"
+      },
+      {
+        "href": "/work/parish",
+        "kicker": "Personal · Full-stack",
+        "title": "Parish room booking",
+        "desc": "Room booking for a parish: double booking blocked in PostgreSQL, a live monitor display over WebSocket, and push notifications in an installable PWA.",
+        "chips": [
+          "NestJS",
+          "Prisma",
+          "PostgreSQL",
+          "React"
+        ],
+        "cta": "Read case study →",
+        "visual": "/illustrations/card-parish.svg"
+      }
+    ]
+  },
+  "repos": {
+    "id": "github",
+    "eyebrow": "05 — More on GitHub",
+    "heading": "Smaller builds and experiments.",
+    "profileLink": {
+      "label": "github.com/Blackpossum ↗",
+      "href": "https://github.com/Blackpossum"
+    },
+    "items": [
+      {
+        "href": "https://github.com/Blackpossum/Project-Artemis",
+        "title": "Project Artemis",
+        "slug": "Project-Artemis",
+        "desc": "Early-stage React UI library: a pnpm and Turborepo monorepo with a tsup-built package and a Storybook 10 showcase.",
+        "lang": "TypeScript",
+        "langKey": "ts"
+      },
+      {
+        "href": "https://github.com/Blackpossum/Bank-Api-Blackpossum",
+        "title": "Bank API",
+        "slug": "Bank-Api-Blackpossum",
+        "desc": "Banking REST API with JWT auth, accounts and transactions, documented in Postman.",
+        "lang": "Python · Flask · SQLAlchemy · MySQL",
+        "langKey": "py"
+      },
+      {
+        "href": "https://github.com/Blackpossum/FLASK_API_Project",
+        "title": "Flask API Project",
+        "slug": "FLASK_API_Project",
+        "desc": "Flask service built around schema validation and clean route layering.",
+        "lang": "Python · Flask · Cerberus",
+        "langKey": "py"
+      },
+      {
+        "href": "https://github.com/Blackpossum/React-app-3D-Design",
+        "title": "3D T-shirt Customizer",
+        "slug": "React-app-3D-Design",
+        "desc": "Edit materials and decals on a 3D shirt, live in the browser.",
+        "lang": "JavaScript · React · Three.js",
+        "langKey": "js"
+      },
+      {
+        "href": "https://github.com/Blackpossum?tab=repositories",
+        "title": "Tech for Village",
+        "slug": "tech-for-village",
+        "desc": "Platform bringing technology access and support resources to rural villages.",
+        "lang": "React · TypeScript · GSAP · Flask",
+        "langKey": "ts"
+      },
+      {
+        "href": "https://github.com/Blackpossum/computer-science",
+        "title": "OSSU Computer Science",
+        "slug": "computer-science",
+        "desc": "Working through the OSSU curriculum — fundamentals, not framework tutorials.",
+        "lang": "Self-study",
+        "langKey": "notes"
+      }
+    ]
+  },
+  "contact": {
+    "id": "contact",
+    "eyebrow": "06 — Contact",
+    "heading": {
+      "text": "Let's build something",
+      "accent": "that ships."
+    },
+    "intro": "I'm open to remote frontend and full-stack roles. Email is the fastest way to reach me.",
+    "email": "yosaphatharwindra@gmail.com",
+    "actions": [
+      {
+        "label": "Send an email →",
+        "href": "mailto:yosaphatharwindra@gmail.com",
+        "variant": "primary"
+      },
+      {
+        "label": "Download résumé ↓",
+        "href": "/resume.pdf",
+        "variant": "secondary"
+      }
+    ],
+    "card": {
+      "name": "Yosaphat Harwindra",
+      "role": "Frontend → full-stack engineer",
+      "avatar": {
+        "src": "/images/contact-avatar.png",
+        "alt": "Yosaphat avatar"
+      },
+      "rows": [
+        {
+          "label": "WhatsApp",
+          "value": "+62 851-1776-4122",
+          "href": "https://wa.me/6285117764122"
+        },
+        {
+          "label": "GitHub",
+          "value": "github.com/Blackpossum",
+          "href": "https://github.com/Blackpossum"
+        },
+        {
+          "label": "LinkedIn",
+          "value": "linkedin.com/in/yosaphat-harwindra-82aa54194",
+          "href": "https://www.linkedin.com/in/yosaphat-harwindra-82aa54194"
+        },
+        {
+          "label": "Based in",
+          "value": "Surakarta (Solo), Indonesia · UTC+7",
+          "href": null
+        }
+      ],
+      "status": "Open to remote roles"
+    }
+  },
+  "footer": {
+    "text": "© 2026 Yosaphat Harwindra",
+    "backToTop": "Back to top ↑"
+  },
+  "placeholders": []
+}

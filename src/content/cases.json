@@ -1,0 +1,1026 @@
+[
+  {
+    "slug": "rover",
+    "legacyPath": "/work-rover",
+    "eyebrow": "Case study · Formulatrix",
+    "titleLines": [
+      "Rover: robotic",
+      "fleet dashboard"
+    ],
+    "lead": "Real-time web dashboard for a fleet of laboratory transport robots. Operators watch the fleet live, control individual robots and author the lab map the robots navigate by.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Frontend engineer"
+      },
+      {
+        "label": "Company",
+        "value": "Formulatrix"
+      },
+      {
+        "label": "Timeline",
+        "value": "Mar 2025 to May 2026"
+      },
+      {
+        "label": "Type",
+        "value": "Internal product"
+      }
+    ],
+    "visual": "/illustrations/rover-fleet.svg",
+    "caption": "Illustration only, not the production UI. Rover is a Formulatrix product.",
+    "blocks": [
+      {
+        "label": "01 · The problem",
+        "type": "text",
+        "text": "Biotech labs use fleets of autonomous robots to move samples and labware between instruments, across floors and through doors and elevators. Operators need one screen that shows where every robot is and what it is doing, and lets them step in when something goes wrong. Three things made the frontend hard: the data is live, the fleet mixes V4 and V6 robots, and labs reuse cabinet layouts that were drawn into every map by hand."
+      },
+      {
+        "label": "02 · What I built",
+        "type": "list",
+        "items": [
+          "One of two frontend engineers, owning features end to end: UI, Redux state, and the API and SignalR integration with the .NET backend.",
+          "Rebuilt the SignalR connection manager so a dropped hub heals itself with a fresh token instead of staying dead.",
+          "Built the frontend of the V6 hardware integration and the Cabinet Library for the map editor.",
+          "Shipped Network Configuration, where instruments report network status live through the device hub, and map tooling."
+        ]
+      },
+      {
+        "label": "03 · Stack",
+        "type": "chips",
+        "items": [
+          "React 17",
+          "Redux Toolkit",
+          "Redux Thunk",
+          "Reselect",
+          "MUI",
+          "Konva",
+          "Three.js",
+          "SignalR",
+          "Vite",
+          "Vitest"
+        ]
+      }
+    ],
+    "impact": {
+      "label": "Impact",
+      "text": "Between March 2025 and May 2026 the dashboard learned to rebuild a dead connection on its own, stopped offering V6 controls to V4 robots, and gave operators a cabinet library they reuse across maps."
+    },
+    "next": {
+      "href": "/work/platform",
+      "title": "Fmlx Common UI"
+    },
+    "pdf": {
+      "label": "Read the full case study (PDF) ↗",
+      "href": "https://drive.google.com/file/d/1scmUsKQHxYekgrVoR34XIQZ1WgYQ8Wk4/view"
+    },
+    "ndaNote": "Under NDA: no source code, internal data or screenshots. The visuals are my own illustrations.",
+    "stats": [
+      {
+        "value": "1,081",
+        "label": "Commits authored",
+        "sub": "Mar 2025 to May 2026"
+      },
+      {
+        "value": "74%",
+        "label": "Of web client commits",
+        "sub": "1,048 of 1,413 in that period",
+        "countTo": 74.0,
+        "suffix": "%"
+      },
+      {
+        "value": "39",
+        "label": "Tickets delivered",
+        "sub": "UI, state and real-time integration",
+        "countTo": 39.0,
+        "suffix": ""
+      },
+      {
+        "value": "761",
+        "label": "Feature commits",
+        "sub": "plus 284 fixes",
+        "countTo": 761.0,
+        "suffix": ""
+      }
+    ],
+    "solutions": [
+      {
+        "label": "04 · A self-healing connection",
+        "text": "SignalR's automatic reconnect retried for 5 seconds, then left the hub closed. Nothing on screen said so: the robots kept moving, the dashboard did not. I traced it to three faults in the connection manager.",
+        "items": [
+          "A closed hub is destroyed and rebuilt after a short delay, never restarted, because a closed connection object cannot be trusted again.",
+          "Only a fully connected state counts as connected. A hub that is still connecting goes through the normal start path.",
+          "Tokens come from a factory at connect time, so every reconnect uses the current session.",
+          "Hub creation became an overridable method with a SignalR mock in the test setup, which unblocked the connection-layer tests."
+        ],
+        "diagram": "/illustrations/rover-diagram-connection.svg"
+      },
+      {
+        "label": "05 · One dashboard, two hardware generations",
+        "text": "V6 robots added an active heater, LoRa power control and hibernation. Parts of the control panel assumed values V4 robots never send: a missing version showed as 4 and the heater fell back to ON. I built the frontend side of the V6 integration, about 108 commits.",
+        "items": [
+          "Each robot's reported version gates V6-only controls. A V4 robot shows Not Supported instead of a false ON.",
+          "Missing data renders as a dash, never as a plausible-looking default.",
+          "When the API cannot report a version, the UI falls back to V4 behaviour, so the worst case is a hidden feature, not a command the robot cannot run.",
+          "The active heater moved from mock data to live SignalR data, with a confirmation before leaving a control session or switching robots."
+        ],
+        "diagram": "/illustrations/rover-diagram-v4-v6.svg"
+      },
+      {
+        "label": "06 · A Cabinet Library, end to end",
+        "text": "Operators drew the same cabinets into every map. I built a shared library for the map editor end to end, about 155 commits from September 2025 to January 2026, on new endpoints while the legacy ones kept working.",
+        "items": [
+          "Library page with search, filter, sorting, card and detail views, skeleton loading and empty states.",
+          "Import and export as JSON files with timestamped names.",
+          "Barcode conflicts on import expand into one row per clashing pair, resolved before anything is saved. Map editor actions on a conflicted cabinet stay disabled.",
+          "Rename with validation, delete with confirmation, and apply any library cabinet to the global map."
+        ],
+        "diagram": "/illustrations/rover-diagram-cabinet-import.svg"
+      }
+    ],
+    "glance": {
+      "label": "07 · At a glance",
+      "rows": [
+        {
+          "aspect": "Lost real-time connection",
+          "before": "Stayed dead after the retry schedule ran out",
+          "after": "Destroyed and rebuilt automatically after a short delay"
+        },
+        {
+          "aspect": "Session expiry on reconnect",
+          "before": "Reused the token captured at start",
+          "after": "Fresh token read on every connect"
+        },
+        {
+          "aspect": "Connection layer tests",
+          "before": "Broken around hub creation",
+          "after": "Hub creation mockable, SignalR mock in the test setup"
+        },
+        {
+          "aspect": "V6-only features on V4",
+          "before": "Fallback values (version 4, heater ON) shown regardless of hardware",
+          "after": "Gated by reported version: Not Supported, or a dash where data is absent"
+        },
+        {
+          "aspect": "Cabinets in maps",
+          "before": "Drawn per map in the editor",
+          "after": "Reusable library: import, export, rename, apply to any map"
+        },
+        {
+          "aspect": "Barcode clashes on import",
+          "before": "No shared library to import into",
+          "after": "One row per conflict, resolved before saving"
+        }
+      ]
+    },
+    "reflection": [
+      {
+        "label": "08 · What made this hard",
+        "text": "None of these problems showed in a demo. A dashboard that has quietly lost its connection looks like a working one, and a V4 robot showing its heater as ON looks like correct data. The work was making the dashboard honest: when it says connected, it is; when a robot cannot do something, the screen says so; when data conflicts, the operator decides."
+      },
+      {
+        "label": "09 · What I would do differently",
+        "text": "The connection rewrite and the version gating deserved more automated tests than they got. The groundwork is in place, with mockable hubs and a SignalR mock, so next I would add tests that simulate a dropped connection and a mixed V4 and V6 fleet end to end."
+      }
+    ]
+  },
+  {
+    "slug": "platform",
+    "legacyPath": "/work-platform",
+    "eyebrow": "Case study · Formulatrix",
+    "titleLines": [
+      "Fmlx Common UI:",
+      "shared components"
+    ],
+    "lead": "Formulatrix's shared React component library, used across its web apps. From November 2024 I rebuilt its TreeView, its notifications and its support login and started its test suite, while every component I replaced stayed available behind a deprecation.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Frontend engineer"
+      },
+      {
+        "label": "Company",
+        "value": "Formulatrix"
+      },
+      {
+        "label": "Timeline",
+        "value": "Nov 2024 to Oct 2025"
+      },
+      {
+        "label": "Type",
+        "value": "Component library"
+      }
+    ],
+    "visual": "/illustrations/case-platform.svg",
+    "caption": "Illustration only, not the production UI. Fmlx Common UI is a Formulatrix product.",
+    "blocks": [
+      {
+        "label": "01 · The project",
+        "type": "text",
+        "text": "Fmlx Common UI is the React component library behind Formulatrix's web apps, from buttons and trees to plate maps. It is built on MUI, documented in Storybook and published to an internal registry by a Jenkins pipeline. A change here reaches every app that upgrades, so the bar is compatibility: new APIs in, old ones deprecated, never pulled out from under a product team."
+      },
+      {
+        "label": "02 · What I built",
+        "type": "list",
+        "items": [
+          "Frontend engineer on the library: 390 commits from November 2024 to October 2025, and 63% of all its commits from November to April.",
+          "Rebuilt the Tree as a compound TreeView, released in 1.10.0, and deprecated the old one instead of deleting it.",
+          "Replaced PushNotification with a compound NotificationCard that stacks through notistack, released in 1.11.0.",
+          "Built OtpInput and the one-time-code version of SupportValidation for the login-as-support flow, released in 1.11.0.",
+          "Started the test suite, 34 of today's 60 test files, and reworked the Storybook docs of ten components."
+        ]
+      },
+      {
+        "label": "03 · Stack",
+        "type": "chips",
+        "items": [
+          "React",
+          "MUI v5",
+          "MUI X Tree View",
+          "Storybook",
+          "Jest",
+          "React Testing Library",
+          "notistack",
+          "react-dnd",
+          "Rollup",
+          "SCSS",
+          "Jenkins"
+        ]
+      }
+    ],
+    "impact": {
+      "label": "Impact",
+      "text": "Two releases carried the headline work: 1.10.0 in February 2025 with the TreeView, and 1.11.0 in April 2025 with NotificationCard, OtpInput and the one-time-code support login. ESS, the review system I also worked on, depends on 1.11.6."
+    },
+    "next": {
+      "href": "/work/ess",
+      "title": "ESS review system"
+    },
+    "pdf": {
+      "label": "Read the full case study (PDF) ↗",
+      "href": "https://drive.google.com/file/d/1CO0YdIF-0_nfr2OPOfIMSxgRyjlTrJk-/view"
+    },
+    "ndaNote": "Under NDA: no source code, internal data or screenshots. The visuals are my own illustrations.",
+    "stats": [
+      {
+        "value": "63%",
+        "label": "Of library commits",
+        "sub": "385 of 615, Nov 2024 to Apr 2025",
+        "countTo": 63.0,
+        "suffix": "%"
+      },
+      {
+        "value": "390",
+        "label": "Commits authored",
+        "sub": "Nov 2024 to Oct 2025",
+        "countTo": 390.0,
+        "suffix": ""
+      },
+      {
+        "value": "34 of 60",
+        "label": "Test files started by me",
+        "sub": "The library had 2 before Feb 2025"
+      },
+      {
+        "value": "3",
+        "label": "Components replaced, none removed",
+        "sub": "Each one deprecated, not deleted",
+        "countTo": 3.0,
+        "suffix": ""
+      }
+    ],
+    "solutions": [
+      {
+        "label": "04 · A TreeView you compose, not configure",
+        "text": "The old FmlxTree took one array of items and rendered everything itself: two sizes, built-in drop handling and its own context menu. Anything the array could not describe was out of reach. I rebuilt it as a compound component from December 2024, 83 of the 124 commits on it, released in 1.10.0.",
+        "items": [
+          "FmlxTreeView and FmlxTreeItem compose like markup: products nest items as children instead of describing them in one array.",
+          "Four size presets, from xs to lg, custom item content through a forwarded content component, and slots for icons, badges and checkbox nodes.",
+          "Drag and drop stays in the product. A documented react-dnd recipe, based on a Rock Maker style tree, shows one way to wire it without baking it in.",
+          "The old FmlxTree stays, marked deprecated with a link to its replacement, so no app broke on upgrade."
+        ],
+        "diagram": "/illustrations/commonui-diagram-treeview.svg",
+        "reference": "Ticket OP-92553 · released in 1.10.0, Feb 2025"
+      },
+      {
+        "label": "05 · Notifications that compose and stack",
+        "text": "PushNotification was one fixed component. Products needed notifications they could compose and stack, with a severity that reads at a glance. I built NotificationCard from January 2025, 56 of the 95 commits on it, released in 1.11.0.",
+        "items": [
+          "A compound NotificationCard with Header, Body and Footer, and info, warning and error severities set once on the card.",
+          "Stacking comes from notistack, but notistack stays a development dependency of the library: apps bring their own provider, and a story documents the integration.",
+          "PushNotification is deprecated in favour of NotificationCard, not removed.",
+          "Tests for the card and its header ship with it."
+        ],
+        "diagram": "/illustrations/commonui-diagram-notifications.svg",
+        "reference": "Ticket OP-70280 · released in 1.11.0, Apr 2025"
+      },
+      {
+        "label": "06 · A support login built on one-time codes",
+        "text": "Formulatrix software has a login-as-support flow. Its design requirement moved from a browser certificate to a time-based one-time code, so SupportValidation needed a code input that does not fight the user. I wrote 34 of the 50 commits on OtpInput and 25 of the 43 on SupportValidation.",
+        "items": [
+          "OtpInput works at any length: typing moves focus forward, paste spreads a code across the boxes, and the arrow keys, Home, End and Backspace behave as expected.",
+          "validateChar filters characters, digits only for example, and onComplete fires once every box is filled.",
+          "SupportValidation was rebuilt around it, with the support email, the code, a submit handler and slot props for the inner input. It shows the instrument's clock, which time-based codes depend on.",
+          "The certificate flow was kept as SupportValidationCertificate, so apps on the old login keep working."
+        ],
+        "diagram": "/illustrations/commonui-diagram-otp-login.svg",
+        "reference": "Ticket OP-90450 · released in 1.11.0, Apr 2025"
+      },
+      {
+        "label": "07 · Docs and tests other teams can trust",
+        "text": "A shared library is only as useful as its documentation, and only as safe to change as its tests. In early 2025 the library had two test files, and ten components had tickets saying their Storybook stories were not informative enough.",
+        "items": [
+          "Reworked the stories of those ten components: card, list, panel, popover, slider, split button, status bar, switch, tooltip and the login-as-support component.",
+          "Started the test suite in February and March 2025: 34 of the library's 60 test files today, across 22 components, about 289 test cases.",
+          "Set a naming and folder convention for tests along the way, so the next contributor can follow one pattern.",
+          "Tests run with Jest and React Testing Library in the Jenkins pipeline that builds every release."
+        ],
+        "diagram": "/illustrations/commonui-diagram-docs-tests.svg",
+        "reference": "Tickets OP-80709 to OP-80766 · Feb to Apr 2025"
+      }
+    ],
+    "glance": {
+      "label": "08 · At a glance",
+      "rows": [
+        {
+          "aspect": "Trees in a product",
+          "before": "One items array, two sizes, behaviour built in",
+          "after": "Composed FmlxTreeItem children, four sizes, custom content"
+        },
+        {
+          "aspect": "Drag and drop in trees",
+          "before": "Built into the component through onDrop",
+          "after": "Owned by the product, with a documented react-dnd recipe"
+        },
+        {
+          "aspect": "Notifications",
+          "before": "One fixed PushNotification",
+          "after": "A composable NotificationCard that stacks through notistack"
+        },
+        {
+          "aspect": "Support login",
+          "before": "Browser certificate",
+          "after": "Time-based one-time code, with the certificate flow kept as its own component"
+        },
+        {
+          "aspect": "Test files in the library",
+          "before": "2",
+          "after": "34 of today's 60 started as mine"
+        },
+        {
+          "aspect": "Replaced components",
+          "before": "Not applicable",
+          "after": "Deprecated with a pointer to the successor, none removed"
+        }
+      ]
+    },
+    "reflection": [
+      {
+        "label": "09 · What made this hard",
+        "text": "A library change is a change to every app that upgrades. Most of the work was saying yes to new needs without saying no to old code: compound APIs that leave room for products, integrations documented instead of bundled, and every replaced component deprecated rather than deleted. The tests mattered for the same reason. A shared component you cannot check is one you cannot safely change."
+      },
+      {
+        "label": "10 · What I would do differently",
+        "text": "Write the tests before the TreeView rebuild, not after it: the tree shipped in February and its tests followed a few weeks later. And track adoption, which version each app runs and which deprecated components it still imports, so that deprecations can end in removals."
+      }
+    ]
+  },
+  {
+    "slug": "ess",
+    "legacyPath": "/work-ess",
+    "eyebrow": "Case study · Formulatrix",
+    "titleLines": [
+      "ESS: employee",
+      "review system"
+    ],
+    "lead": "Formulatrix's internal employee review system. Twice a year, employees score and comment on their peers and managers, and leads consolidate the results. From my first month in July 2024 to May 2025 I was its most active contributor.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Frontend engineer"
+      },
+      {
+        "label": "Company",
+        "value": "Formulatrix"
+      },
+      {
+        "label": "Timeline",
+        "value": "Jul 2024 to May 2025"
+      },
+      {
+        "label": "Type",
+        "value": "Internal web app"
+      }
+    ],
+    "visual": "/illustrations/case-ess.svg",
+    "caption": "Illustration only, not the production UI. ESS is a Formulatrix internal system.",
+    "blocks": [
+      {
+        "label": "01 · The project",
+        "type": "text",
+        "text": "Every half year, Formulatrix employees review each other in ESS. They score peers and managers, leave comments, send kudos or criticism and receive a PDF report, while leads and admins consolidate the scores per review period. The app is a React client on a .NET 6 backend with PostgreSQL, and people sign in with Google."
+      },
+      {
+        "label": "02 · What I built",
+        "type": "list",
+        "items": [
+          "Frontend engineer from my first month at Formulatrix: 308 commits from July 2024 to May 2025, a third of the commits in that time.",
+          "Rebuilt the Admin, Manager and Employee dashboards with score charts by category and review period, then fixed the cases where they ignored the selected period.",
+          "Built the message inbox and dropbox: tabs for Formulatrix and for leads, Kudos or Criticism, consolidation kudos and CSV export.",
+          "Fixed the question rules: required comments on essay questions independent of linear scales, minimum word counts, and a general question header per department.",
+          "Moved ESS screens onto Fmlx Common UI, the component library I later worked on."
+        ]
+      },
+      {
+        "label": "03 · Stack",
+        "type": "chips",
+        "items": [
+          "React",
+          "Redux Toolkit",
+          "Reselect",
+          "MUI",
+          "MUI X Charts",
+          "Fmlx Common UI",
+          "Axios",
+          "React Router",
+          ".NET 6",
+          "PostgreSQL",
+          "Google sign-in"
+        ]
+      }
+    ],
+    "impact": {
+      "label": "Impact",
+      "text": "From July 2024 to May 2025 I shipped 24 tickets across dashboards, messages and question rules, a third of the commits in that time, and moved ESS onto Fmlx Common UI, the component library I went on to work on."
+    },
+    "next": {
+      "href": "/work/promptomat",
+      "title": "Promptomat"
+    },
+    "pdf": {
+      "label": "Read the full case study (PDF) ↗",
+      "href": "https://drive.google.com/file/d/14mZQkMjiuGAUEW-ajjl2n2C8J87sObhR/view"
+    },
+    "ndaNote": "Under NDA: no source code, internal data or screenshots. The visuals are my own illustrations.",
+    "stats": [
+      {
+        "value": "308",
+        "label": "Commits authored",
+        "sub": "Jul 2024 to May 2025",
+        "countTo": 308.0,
+        "suffix": ""
+      },
+      {
+        "value": "33%",
+        "label": "Of ESS commits",
+        "sub": "300 of 904 on develop, the most of anyone",
+        "countTo": 33.0,
+        "suffix": "%"
+      },
+      {
+        "value": "24",
+        "label": "Tickets delivered",
+        "sub": "Dashboards, messages and question rules",
+        "countTo": 24.0,
+        "suffix": ""
+      },
+      {
+        "value": "3",
+        "label": "Role-based dashboards",
+        "sub": "Admin, Manager and Employee",
+        "countTo": 3.0,
+        "suffix": ""
+      }
+    ],
+    "solutions": [
+      {
+        "label": "04 · Dashboards that follow the review period",
+        "text": "Each role needs a different view of the same review data: admins see the company, managers their team, employees themselves. I rebuilt the three dashboards with line charts of scores by category and period in September and October 2024, then came back in March and April 2025 to the bugs where a dashboard ignored the period someone had picked.",
+        "items": [
+          "Admin, Manager and Employee dashboards share one chart layout and one data hook, with sorting and pagination on the manager table.",
+          "Every dashboard request now carries the review period, so switching the period refetches instead of showing the previous one.",
+          "Chart data moved up to the parent component and the Redux updates were grouped into one batched dispatch, so the charts and info cards change together.",
+          "Removed hard-coded fallback values that looked like real scores, and fixed an admin dashboard that showed 0 and a chart that showed the wrong period."
+        ],
+        "diagram": "/illustrations/ess-diagram-dashboards.svg",
+        "reference": "Tickets OP-77741, OP-86210, OP-98271, OP-99047, OP-104161"
+      },
+      {
+        "label": "05 · Messages, kudos and criticism",
+        "text": "Reviews are not only scores. Employees also send messages: suggestions to Formulatrix, feedback to their lead, kudos or criticism for a colleague. From July to November 2024 I built where those messages land.",
+        "items": [
+          "A reusable message table on Fmlx Common UI behind the inbox and the dropbox, opened from a navigation bar button every user can reach.",
+          "Separate tabs for messages to Formulatrix and to leads, with a collapsible lead table and a Kudos or Criticism column.",
+          "Role checks so that Leaders and Practice Leaders see the lead page, and requests scoped to the active review period.",
+          "Kudos cards in the consolidation review, and a CSV export wired to its backend endpoint."
+        ],
+        "diagram": "/illustrations/ess-diagram-messages.svg",
+        "reference": "Tickets OP-76774, OP-79577, OP-81865, OP-84902, OP-85099"
+      },
+      {
+        "label": "06 · Question rules that hold",
+        "text": "A review form is only fair if its rules are consistent. My first fix at Formulatrix, in July 2024, was a linear-scale question that could not detect a required comment, and question rules stayed a thread through the year.",
+        "items": [
+          "Required comments on essay questions no longer depend on the linear-scale setting, and essay questions require a comment by default.",
+          "The minimum word count no longer renders twice.",
+          "Question data on the question page follows the selected review period.",
+          "Each department can have its own general question header, wired to a new endpoint."
+        ],
+        "diagram": "/illustrations/ess-diagram-question-rules.svg",
+        "reference": "Tickets OP-73263, OP-86455, OP-88007, OP-86302, OP-91162"
+      },
+      {
+        "label": "07 · From consumer to maintainer",
+        "text": "ESS was one of the apps built on Fmlx Common UI. In July and August 2024 I moved ESS screens onto it, building the message table on an alpha release. From November 2024 I worked on the library itself.",
+        "items": [
+          "Refactored ESS components onto Common UI components, and upgraded the library version in ESS as it matured.",
+          "Built the message table on Common UI alpha 5, while the library was still settling.",
+          "From November 2024 to April 2025 I was the library's most active contributor, with 63% of its commits.",
+          "ESS depends on Common UI 1.11.6, which includes the TreeView, NotificationCard and OtpInput I built."
+        ],
+        "diagram": "/illustrations/ess-diagram-consumer-to-maintainer.svg",
+        "reference": "Fmlx Common UI in ESS from July 2024"
+      }
+    ],
+    "glance": {
+      "label": "08 · At a glance",
+      "rows": [
+        {
+          "aspect": "Changing the review period on a dashboard",
+          "before": "Charts kept the previous period's data",
+          "after": "Every request carries the period; charts and cards update together"
+        },
+        {
+          "aspect": "Missing dashboard data",
+          "before": "Hard-coded fallbacks that looked like real scores",
+          "after": "Fallbacks removed"
+        },
+        {
+          "aspect": "The navigation bar message button",
+          "before": "Not wired up",
+          "after": "Opens the inbox and dropbox for every user"
+        },
+        {
+          "aspect": "Messages to Formulatrix and to leads",
+          "before": "No Formulatrix or lead tabs",
+          "after": "Separate tabs, Kudos or Criticism, role checks"
+        },
+        {
+          "aspect": "Required comment on essay questions",
+          "before": "Tied to the linear-scale setting",
+          "after": "Independent, and on by default"
+        },
+        {
+          "aspect": "ESS components",
+          "before": "App-specific UI",
+          "after": "Fmlx Common UI components"
+        }
+      ]
+    },
+    "reflection": [
+      {
+        "label": "09 · What made this hard",
+        "text": "Review data is only useful if everyone sees the same period. Most of the bugs I fixed were not crashes but quiet mismatches: a chart showing last period's score, a fallback number that looked real, a rule applied to the wrong question type. Each could make a review unfair without anyone noticing."
+      },
+      {
+        "label": "10 · What I would do differently",
+        "text": "Make the review period an explicit input of every query from the start, instead of fixing views one by one. And add tests: the client had a testing library installed but no test files, so every period fix was checked by hand."
+      }
+    ]
+  },
+  {
+    "slug": "promptomat",
+    "legacyPath": "/work-promptomat",
+    "eyebrow": "Team project · Binary Studio Academy",
+    "titleLines": [
+      "Promptomat: prompt",
+      "search for AI tools"
+    ],
+    "lead": "A team-built app that collects the prompts developers give AI coding tools, scores how well each one worked, and serves the best match back for a new task. I built account recovery, the logging streak, the Training hub and the 403 access flow, across backend and frontend.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Full-stack engineer"
+      },
+      {
+        "label": "Program",
+        "value": "Binary Studio Academy"
+      },
+      {
+        "label": "Timeline",
+        "value": "Aug to Oct 2026"
+      },
+      {
+        "label": "Type",
+        "value": "Team of 18 contributors"
+      }
+    ],
+    "visual": "/illustrations/case-promptomat.svg",
+    "caption": "Illustration of the Training hub I built, simplified. Values are illustrative.",
+    "blocks": [
+      {
+        "label": "01 · The project",
+        "type": "text",
+        "text": "Developers rewrite the same prompts for AI coding tools again and again. Promptomat starts in a Training Mode, where they log a prompt and score how well it worked from 1 to 10. That dataset feeds a semantic search that turns a task description into the best matching prompt, and an MCP server makes it available inside coding tools. Eighteen people merged code into one monorepo over about eight weeks, with pull requests reviewed by teammates."
+      },
+      {
+        "label": "02 · What I owned",
+        "type": "list",
+        "items": [
+          "Full-stack engineer on an 18-person team: 11 merged pull requests across the Fastify backend, the React frontend and the shared contracts package.",
+          "Password reset end to end: signed single-use links, session invalidation, enumeration-safe responses, per-address rate limiting, and the 13 screen states I designed in Figma.",
+          "The prompt logging streak, designed and built: stored on the user, updated in the same transaction as each logged prompt, recomputed in SQL when the time zone changes.",
+          "The Training hub redesign: Markdown write and preview, one-click scoring, recent prompts per workspace, the streak card and a dataset target card.",
+          "The 403 path: a No access page and a redirect channel that lets the API layer drive the router, later reused for the 401 sign-in redirect."
+        ]
+      },
+      {
+        "label": "03 · Stack",
+        "type": "chips",
+        "items": [
+          "React",
+          "TypeScript",
+          "RTK Query",
+          "react-hook-form",
+          "Zod",
+          "Fastify",
+          "PostgreSQL",
+          "pgvector",
+          "Knex + Objection",
+          "jose",
+          "Nodemailer",
+          "AWS Bedrock",
+          "MCP"
+        ]
+      }
+    ],
+    "impact": {
+      "label": "Impact",
+      "text": "By the final demo the team had shipped every part of the spec: auth and settings, Training Mode, search and delivery, log history, workspaces and analytics. My share was 11 merged pull requests, centred on account recovery, the logging streak, the Training hub and the 403 access flow."
+    },
+    "next": {
+      "href": "/work/parish",
+      "title": "Parish room booking"
+    },
+    "pdf": {
+      "label": "Read the full case study (PDF) ↗",
+      "href": "https://drive.google.com/file/d/19sCWG7f6YcK597F-Njt1iUweeLkPDeEk/view"
+    },
+    "links": [
+      {
+        "label": "View the repository ↗",
+        "href": "https://github.com/BinaryStudioAcademy/bsa-2026-promtomat"
+      },
+      {
+        "label": "Open the live app ↗",
+        "href": "https://drga8t6qf873e.cloudfront.net/sign-in"
+      }
+    ],
+    "note": "Public repository. Every number on this page comes from its git history and pull requests.",
+    "stats": [
+      {
+        "value": "11",
+        "label": "Merged pull requests",
+        "sub": "+5,276 / -642 lines, Aug to Oct 2026",
+        "countTo": 11.0,
+        "suffix": ""
+      },
+      {
+        "value": "1 of 5",
+        "label": "Concurrent resets accepted",
+        "sub": "Same link, five passwords: one succeeds"
+      },
+      {
+        "value": "0.3 ms",
+        "label": "Known vs unknown email gap",
+        "sub": "Down from 33 ms, median of 25 requests"
+      }
+    ],
+    "solutions": [
+      {
+        "label": "04 · Password reset that leaks nothing",
+        "text": "Settings needed a reset action, and signed-out users needed a forgot password flow. A reset link is a key to the account, so I treated each of its properties as a decision: what it unlocks, how many times, for how long, and what a stranger learns by asking for one.",
+        "items": [
+          "Links are signed tokens with a purpose claim and a 10 minute expiry. Nothing is stored, so a database dump holds nothing that becomes a link.",
+          "A reset link is rejected as a session token, and a session token is rejected by the reset endpoint.",
+          "Each link works once: one conditional UPDATE claims it against password_changed_at. Five concurrent submits of the same link, one success. The same stamp signs out every older session.",
+          "Every address gets the same 202, with the work scheduled after the response. The known vs unknown timing gap fell from 33 ms to 0.3 ms.",
+          "At most 3 requests per address per 15 minutes, through @fastify/rate-limit keyed by a sha256 of the email, so the store never holds plaintext addresses."
+        ],
+        "diagram": "/illustrations/promptomat-diagram-reset-race.svg",
+        "link": {
+          "label": "Read the pull request ↗",
+          "href": "https://github.com/BinaryStudioAcademy/bsa-2026-promtomat/pull/142"
+        }
+      },
+      {
+        "label": "05 · A streak that means the same thing everywhere",
+        "text": "Training Mode only works if people keep logging, so the backlog had a daily logging streak. My first version computed it from the full prompt history on every request. Review moved it into the database, and the hard part turned out to be time zones: a day in Jakarta is not a day in UTC.",
+        "items": [
+          "The streak lives on the user with the last active date, updated by one CASE statement inside the transaction that saves the prompt.",
+          "Reads check staleness in SQL: a streak survives only while the last active day is today or yesterday in the user's time zone.",
+          "The time zone is stored with the number. When it changes, a gaps-and-islands query recomputes the streak from history, so travelling does not break it.",
+          "A backfill migration seeded existing users, a (user_id, created_at) index keeps the scan cheap, and date-only strings now parse with parseISO, so west of UTC a day no longer shows as the day before."
+        ],
+        "diagram": "/illustrations/promptomat-diagram-streak.svg",
+        "link": {
+          "label": "Read the pull request ↗",
+          "href": "https://github.com/BinaryStudioAcademy/bsa-2026-promtomat/pull/313"
+        }
+      },
+      {
+        "label": "06 · A Training hub built for repetition",
+        "text": "The Training hub is where the dataset comes from, so every extra click costs data. I redesigned it to match the new reference, kept it honest about what the backend stored, and added the progress people need to keep going.",
+        "items": [
+          "Markdown write and preview modes for the prompt body. Switching never changes what was typed.",
+          "After saving, the panel shows the label the backend stored, never a guess made while typing.",
+          "Recent prompts follow the selected workspace without flashing the previous workspace's list.",
+          "Clicking a score logs the prompt, as the spec intended. My redesign had added a separate Log button; the follow-up ticket asked for one click again, and I restored it.",
+          "A dataset target card reuses the count the form already loaded and refreshes through the same cache invalidation as the new prompt: no new query, no backend change. The percentage is floored, so one prompt short never reads 100."
+        ],
+        "diagram": "/illustrations/promptomat-diagram-training-hub.svg",
+        "link": {
+          "label": "Read the pull request ↗",
+          "href": "https://github.com/BinaryStudioAcademy/bsa-2026-promtomat/pull/293"
+        }
+      },
+      {
+        "label": "07 · Access errors handled once",
+        "text": "A 403 had nowhere to go. No page existed for it, and the backend could not even send one, because FORBIDDEN was missing from the shared HTTP codes.",
+        "items": [
+          "Added FORBIDDEN to the shared HTTP codes, so controllers can answer 403.",
+          "The RTK Query base query turns any 403 into a redirect to a No access page, for every feature, without the feature doing anything.",
+          "The base query lives outside React and cannot import the router without a cycle through the store, so it dispatches into a navigation slice and a useRedirect hook performs the navigation.",
+          "A reusable FallbackScreen holds the layout for error screens. The 401 sign-in redirect, added later by a teammate, reuses the same channel."
+        ],
+        "diagram": "/illustrations/promptomat-diagram-access-redirect.svg",
+        "link": {
+          "label": "Read the pull request ↗",
+          "href": "https://github.com/BinaryStudioAcademy/bsa-2026-promtomat/pull/46"
+        }
+      }
+    ],
+    "figure": {
+      "images": [
+        {
+          "src": "/images/promptomat-reset-request-states.png",
+          "alt": "Five password reset request states designed in Figma: default, email focused, email invalid, sending, and check your email."
+        },
+        {
+          "src": "/images/promptomat-reset-complete-states.png",
+          "alt": "Six choose-a-new-password states designed in Figma: password focused, too short, passwords do not match, saving, link expired and link invalid."
+        }
+      ],
+      "caption": "Password reset states I designed in Figma: 13 in total, five for requesting a link and eight for choosing a new password (six shown here).",
+      "afterSolution": 1
+    },
+    "glance": {
+      "label": "08 · At a glance",
+      "rows": [
+        {
+          "aspect": "Probing whether an email has an account",
+          "before": "Response time gap of 33 ms",
+          "after": "Same 202 for every address, gap of 0.3 ms"
+        },
+        {
+          "aspect": "Reset link used as a login token",
+          "before": "Would have passed: the guard accepted any token carrying a userId",
+          "after": "Rejected with 401: purpose claims are checked both ways"
+        },
+        {
+          "aspect": "Same reset link submitted 5 times at once",
+          "before": "Read then write: two submits could both pass",
+          "after": "One conditional UPDATE: exactly one succeeds"
+        },
+        {
+          "aspect": "Streak on every read",
+          "before": "Computed from the full prompt history",
+          "after": "Stored number, updated in the logging transaction"
+        },
+        {
+          "aspect": "Date-only values west of UTC",
+          "before": "Rendered as the previous day",
+          "after": "Parsed with parseISO: the right calendar day"
+        },
+        {
+          "aspect": "A 403 from any endpoint",
+          "before": "Backend could not send one, no page for it",
+          "after": "No access page, reached from every feature"
+        }
+      ]
+    },
+    "reflection": [
+      {
+        "label": "09 · What made this hard",
+        "text": "Each of these features is easy to get almost right. A reset link that also works as a login, a streak that is correct in UTC and wrong in Jakarta, a progress bar that reads 100 percent one prompt early, a 403 the backend cannot send: all of them pass a quick demo. The work was proving the edges, mostly by measurement against a running server, because the repository had no test runner."
+      },
+      {
+        "label": "10 · What I would do differently",
+        "text": "Set up a test runner before the first feature, so the concurrency and timing checks run on every pull request instead of once by hand. Raise changes to documented behaviour before shipping them, as with the one-click scoring I replaced and then restored. And settle the same-second session trade-off in the reset flow rather than leaving it as a note."
+      }
+    ]
+  },
+  {
+    "slug": "parish",
+    "legacyPath": "/work-parish",
+    "eyebrow": "Case study · Personal",
+    "titleLines": [
+      "Parish room",
+      "booking system"
+    ],
+    "lead": "A full-stack room booking system for Paroki St. Antonius Purbayan in Surakarta. Parishioners request a meeting room, the secretariat approves it, and a monitor outside the rooms shows the day’s schedule live. I designed and built it alone, from the database schema to the deploy configs.",
+    "meta": [
+      {
+        "label": "Role",
+        "value": "Solo full-stack"
+      },
+      {
+        "label": "For",
+        "value": "St. Antonius Purbayan"
+      },
+      {
+        "label": "Timeline",
+        "value": "Jul 2026"
+      },
+      {
+        "label": "Type",
+        "value": "Personal project"
+      }
+    ],
+    "visual": "/illustrations/case-parish.svg",
+    "caption": "Illustration of the monitor display, not a screenshot.",
+    "blocks": [
+      {
+        "label": "01 · The project",
+        "type": "text",
+        "text": "Room requests at the parish ran on paper and chat, with no single view of which rooms were free. The system has three surfaces: an installable app for parishioners, an admin panel for the secretariat, and a public monitor display. It is a NestJS API with Prisma and PostgreSQL behind a React and Vite PWA, built to a written design document."
+      },
+      {
+        "label": "02 · What I built",
+        "type": "list",
+        "items": [
+          "Built the whole system alone: a NestJS API with 24 endpoints across 8 controllers, and a React PWA with parishioner, admin and display routes.",
+          "Blocked double booking in PostgreSQL with an exclusion constraint, and turned a violation into a clean 409 for the admin.",
+          "Pushed every schedule change to all open screens over Socket.IO, with polling only while the socket is down.",
+          "Computed \"today\" in the parish timezone with the Temporal API, after the display showed an empty day at 02:32 WIB.",
+          "Sent approve and reject outcomes as web push to the requester’s devices, without ever failing the admin’s action."
+        ]
+      },
+      {
+        "label": "03 · Stack",
+        "type": "chips",
+        "items": [
+          "NestJS",
+          "Prisma",
+          "PostgreSQL",
+          "React 19",
+          "Vite",
+          "Tailwind v4",
+          "Socket.IO",
+          "Temporal",
+          "Web Push",
+          "PWA",
+          "Docker"
+        ]
+      }
+    ],
+    "impact": {
+      "label": "Impact",
+      "text": "The parish adopted it. Paroki St. Antonius Purbayan’s room booking app at purbayan.lun.web.id runs on this backend and its push notifications for Android and iOS, with the parish’s own frontend. So the double-booking guard and the decision notifications now handle the parish’s real requests."
+    },
+    "next": {
+      "href": "/work/rover",
+      "title": "Rover fleet dashboard"
+    },
+    "pdf": {
+      "label": "Read the full case study (PDF) ↗",
+      "href": "https://drive.google.com/file/d/1uJwvgGpR9eUBQK210cCElZKFdDtohaLZ/view"
+    },
+    "links": [
+      {
+        "label": "View the repository ↗",
+        "href": "https://github.com/Blackpossum/parish-booking-system"
+      },
+      {
+        "label": "Visit the parish app ↗",
+        "href": "https://purbayan.lun.web.id/"
+      }
+    ],
+    "note": "Public repository. Every number on this page comes from its code and git history.",
+    "stats": [
+      {
+        "value": "3",
+        "label": "Surfaces",
+        "sub": "Parishioner app, admin panel, monitor display",
+        "countTo": 3.0,
+        "suffix": ""
+      },
+      {
+        "value": "24",
+        "label": "API endpoints",
+        "sub": "Across 8 NestJS controllers",
+        "countTo": 24.0,
+        "suffix": ""
+      },
+      {
+        "value": "0",
+        "label": "Overlapping approvals possible",
+        "sub": "One PostgreSQL exclusion constraint"
+      }
+    ],
+    "solutions": [
+      {
+        "label": "04 · Double booking, blocked by the database",
+        "text": "Several parishioners can ask for the same room at the same time, and that is fine: the room is only claimed when the secretariat approves one. The risk is two admins approving overlapping requests at nearly the same moment. A check-then-write in the service would race, so the database decides.",
+        "items": [
+          "A PostgreSQL exclusion constraint with btree_gist rejects any two approved bookings for one room whose time ranges overlap.",
+          "Only approved rows take part, so pending and rejected requests can overlap freely.",
+          "Prisma cannot express the constraint, so it lives in a hand-written migration, and start and end are timestamptz because tstzrange needs them.",
+          "BookingsService.approve() lets the write hit the constraint and translates the violation into a 409 Conflict with a message the admin can act on."
+        ],
+        "diagram": "/illustrations/parish-diagram-double-booking-guard.svg",
+        "reference": "Migration 20260717000000 · BookingsService.approve()"
+      },
+      {
+        "label": "05 · A monitor that updates itself",
+        "text": "A screen outside the rooms shows today’s approved bookings, with a QR code to the parishioner app. It has no keyboard and nobody to press refresh, so it has to stay current on its own, and so did every other screen showing bookings.",
+        "items": [
+          "The API broadcasts schedule:changed on a Socket.IO namespace whenever a request is created, approved or rejected.",
+          "One shared useScheduleSocket hook now drives the display, the admin queue, the calendar, availability and My Bookings, and refetches on reconnect to cover missed events.",
+          "The display polls every 60 seconds only while the socket is down. Before that it polled unconditionally, about 2,880 requests a day from a push-driven screen.",
+          "API responses are sent no-store, after a heuristic browser cache served a stale schedule until a manual refresh."
+        ],
+        "diagram": "/illustrations/parish-diagram-live-display.svg",
+        "reference": "Commits 38ef1f8 and 315e802 · Jul 2026"
+      },
+      {
+        "label": "06 · \"Today\" in the parish’s timezone",
+        "text": "The display showed an empty schedule while five approved bookings existed for the day staff were looking at. The query built \"today\" with setHours(0,0,0,0), which is midnight on the server, and the server ran in UTC, seven hours behind WIB. At 02:32 WIB it was still yesterday.",
+        "items": [
+          "Day and week ranges are computed in PARISH_TIMEZONE, Asia/Jakarta by default, so the server’s own clock no longer matters.",
+          "The fix went to all three places with the bug: the display schedule, room availability and the dashboard’s weekly count.",
+          "A first version measured the offset through Intl. I replaced it with the Temporal API, whose startOfDay() is correct even on daylight-saving days.",
+          "Ranges are half-open, [start, end), so queries use lt instead of the 23:59:59.999 fudge that drops the last millisecond."
+        ],
+        "diagram": "/illustrations/parish-diagram-parish-timezone.svg",
+        "reference": "Commits dd4e549 and 17bc0ea · Jul 2026"
+      },
+      {
+        "label": "07 · Notifications that never block a decision",
+        "text": "Requesters want to know the outcome without checking the app. The frontend is an installable PWA, so the API can push the decision to every device a parishioner has allowed, and the admin’s approval must not depend on that delivery.",
+        "items": [
+          "The service worker shows the notification and opens the app on tap; the PWA updates itself when a new version ships.",
+          "Approve and reject send the push fire-and-forget, so a failed notification never fails the admin’s action.",
+          "Subscriptions the browser has dropped, answered with 404 or 410, are pruned instead of retried forever.",
+          "Subscribing failed for every real browser at first: the subscription JSON carries expirationTime and strict validation rejected it. The field is now accepted and ignored."
+        ],
+        "diagram": "/illustrations/parish-diagram-push-notifications.svg",
+        "reference": "Commit 38ef1f8 · PushService · push-sw.js"
+      }
+    ],
+    "glance": {
+      "label": "08 · At a glance",
+      "rows": [
+        {
+          "aspect": "Screens showing bookings",
+          "before": "Only the display listened; the rest needed a refresh",
+          "after": "All five booking screens update over Socket.IO"
+        },
+        {
+          "aspect": "Events broadcast",
+          "before": "Approvals only",
+          "after": "New requests, approvals and rejections"
+        },
+        {
+          "aspect": "Display polling",
+          "before": "Every 60 seconds, always",
+          "after": "Only while the socket is down"
+        },
+        {
+          "aspect": "\"Today\" on the display",
+          "before": "The server's UTC day",
+          "after": "The parish day in Asia/Jakarta"
+        },
+        {
+          "aspect": "Push subscribe from real browsers",
+          "before": "Rejected with a 400",
+          "after": "Accepted; expirationTime ignored"
+        },
+        {
+          "aspect": "API response caching",
+          "before": "Heuristic, could serve a stale schedule",
+          "after": "no-store for the API; uploaded PDFs stay cacheable"
+        }
+      ]
+    },
+    "reflection": [
+      {
+        "label": "09 · What made this hard",
+        "text": "The hard bugs were not crashes. They were quiet: a schedule that looked empty at the wrong hour, a screen that held stale data, a push subscription the API rejected without anyone seeing an error. Each looked fine in a quick test and only showed up when time zones, caches and real browsers met. The answer each time was to move the guarantee somewhere it cannot be skipped: into the database, the timezone, or the event stream."
+      },
+      {
+        "label": "10 · What I would do differently",
+        "text": "Write tests before deploying. The repository has none, so every fix here was found by watching the running system. The constraint, the half-open day ranges and the socket fallback are exactly the kind of behaviour a few integration tests would pin down. I would also add rate limiting to the auth endpoints, which the README already lists as a gap."
+      }
+    ]
+  }
+]

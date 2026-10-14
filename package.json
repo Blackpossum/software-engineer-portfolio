@@ -2,6 +2,7 @@
   "name": "software-engineer-portfolio",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,7 +12,8 @@
     "lint": "concurrently \"pnpm:lint:*\"",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "sync:kit": "node scripts/sync-kit.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
