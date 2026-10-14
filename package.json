@@ -14,7 +14,7 @@
     "format:check": "prettier --check .",
     "prepare": "husky",
     "sync:kit": "node scripts/sync-kit.ts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
     "test:e2e:local": "playwright test --project=chromium --project=firefox"
