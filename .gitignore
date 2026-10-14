@@ -43,3 +43,7 @@ next-env.d.ts
 
 # unnecessary files
 BUILD-GUIDE.md
+
+# Agent instruction files stay local (D-28)
+CLAUDE.md
+AGENTS.md
