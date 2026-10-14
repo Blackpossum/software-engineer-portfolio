@@ -47,7 +47,7 @@
       "move."
     ],
     "accentLineIndex": 2,
-    "intro": "Frontend engineer with 2 years shipping production React at Formulatrix — real-time robot fleet dashboards, a shared component library and internal platforms. Now growing into full-stack.",
+    "intro": "Frontend engineer with 2 years shipping production React at Formulatrix: real-time robot fleet dashboards, a shared component library and internal platforms. Now growing into full-stack.",
     "actions": [
       {
         "label": "View my work →",
@@ -73,11 +73,11 @@
   },
   "about": {
     "id": "about",
-    "eyebrow": "01 — About",
+    "eyebrow": "01 · About",
     "heading": "From the factory floor to the frontend.",
     "paragraphs": [
       "Before I wrote code for a living, I spent four years running packaging machines and leading shifts at PT Oji Sinarmas. That's where I learned to think in systems: how the parts move, where the load really sits, and what breaks first under pressure.",
-      "At Formulatrix I brought that mindset to React — real-time dashboards for lab robots, a component library shared across product teams, and internal tools people use every day.",
+      "At Formulatrix I brought that mindset to React: real-time dashboards for lab robots, a component library shared across product teams, and internal tools people use every day.",
       "Now I'm going deeper into backend and systems work with NestJS, Prisma and PostgreSQL, and tinkering with Linux and embedded hardware on the side."
     ],
     "image": {
@@ -114,7 +114,7 @@
   },
   "journey": {
     "id": "journey",
-    "eyebrow": "02 — Journey",
+    "eyebrow": "02 · Journey",
     "heading": "Mechanical engineering → software.",
     "milestones": [
       {
@@ -149,7 +149,7 @@
         "date": "2026",
         "title": "Binary Studio Academy",
         "role": "BSA 2026 · Team project",
-        "note": "Building Promptomat — a React + TypeScript monorepo — across frontend and backend.",
+        "note": "Building Promptomat, a React + TypeScript monorepo, across frontend and backend.",
         "current": true
       }
     ],
@@ -160,7 +160,7 @@
   },
   "skills": {
     "id": "skills",
-    "eyebrow": "03 — Skills",
+    "eyebrow": "03 · Skills",
     "heading": "Tools I reach for.",
     "legend": [
       "Daily drivers",
@@ -294,7 +294,7 @@
   },
   "work": {
     "id": "work",
-    "eyebrow": "04 — Selected work",
+    "eyebrow": "04 · Selected work",
     "heading": "Things I've built and shipped.",
     "meta": "5 case studies",
     "featured": {
@@ -372,7 +372,7 @@
   },
   "repos": {
     "id": "github",
-    "eyebrow": "05 — More on GitHub",
+    "eyebrow": "05 · More on GitHub",
     "heading": "Smaller builds and experiments.",
     "profileLink": {
       "label": "github.com/Blackpossum ↗",
@@ -423,7 +423,7 @@
         "href": "https://github.com/Blackpossum/computer-science",
         "title": "OSSU Computer Science",
         "slug": "computer-science",
-        "desc": "Working through the OSSU curriculum — fundamentals, not framework tutorials.",
+        "desc": "Working through the OSSU curriculum: fundamentals, not framework tutorials.",
         "lang": "Self-study",
         "langKey": "notes"
       }
@@ -431,7 +431,7 @@
   },
   "contact": {
     "id": "contact",
-    "eyebrow": "06 — Contact",
+    "eyebrow": "06 · Contact",
     "heading": {
       "text": "Let's build something",
       "accent": "that ships."

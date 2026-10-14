@@ -73,6 +73,10 @@ None yet.
 
 Every content change after v1 is listed here with the date the Webflow site got the same change.
 
+| Date       | Change                                                                                                                                                                                                 | Webflow                               |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| 2026-10-14 | D-23 em dashes in `site.json` (10 fields): section eyebrows use "01 · About" style; hero intro, about paragraph 2, Promptomat milestone note and OSSU repo description reworded with a colon or commas | Pending: Erwin applies after v1 ships |
+
 ## Session log
 
 ### 2026-10-08 · Cowork (design)
