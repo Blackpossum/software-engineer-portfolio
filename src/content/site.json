@@ -61,6 +61,7 @@
       }
     ],
     "stack": "React · TypeScript · Three.js · Node.js · NestJS · PostgreSQL",
+    "marquee": ["React", "TypeScript", "Three.js", "Node.js", "NestJS", "PostgreSQL", "Redux", "Storybook", "SignalR", "Prisma"],
     "cardCode": [
       "// crafting solutions,",
       "// one line at a time"
