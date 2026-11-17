@@ -1,4 +1,6 @@
 @import "../styles/tokens.css";
+@import "../styles/site.css";
+@import "../styles/motion.css";
 
 *,
 *::before,
@@ -76,4 +78,11 @@ section {
 }
 .w-embed::after {
   clear: both;
+}
+/* The menu toggle is a <button> here (an <a href="#"> on Webflow): drop the default chrome. */
+button.nav-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
 }
