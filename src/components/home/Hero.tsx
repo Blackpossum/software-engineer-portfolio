@@ -10,10 +10,6 @@ export function Hero({ hero }: { hero: Site["hero"] }) {
       <div className="container">
         <div className="hero-grid">
           <div className="hero-content">
-            <div className="status-pill">
-              <span className="status-dot" />
-              {hero.status}
-            </div>
             <h1 className="heading-xl">
               <LineMask
                 accentIndex={hero.accentLineIndex}

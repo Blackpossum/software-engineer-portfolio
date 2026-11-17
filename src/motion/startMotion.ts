@@ -2,7 +2,6 @@
 // covers the load), so effects are set up once and never need tearing down.
 import type { MotionContext } from "./env";
 
-import { setupCursor, setupSpotlight } from "./cursor";
 import {
   hasFinePointer,
   one,
@@ -15,6 +14,7 @@ import { ScrollTrigger } from "./gsap";
 import { copyEmail, pointerInteractions } from "./interactions";
 import { caseIntro, heroIntro } from "./intros";
 import { enter, runLoader, setupLinks } from "./pageTransitions";
+import { setupHoverPull, setupSpotlight } from "./pointer";
 import {
   baseReveals,
   scrambleLabels,
@@ -65,7 +65,7 @@ export function startMotion(pageNames: Record<string, string>) {
   });
   safely("progress", scrollProgress);
   if (context.fine) {
-    safely("cursor", setupCursor);
+    safely("pull", setupHoverPull);
     safely("spotlight", setupSpotlight);
   }
   safely("links", () => setupLinks(context));

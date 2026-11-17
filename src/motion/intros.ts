@@ -65,15 +65,16 @@ export function heroIntro(context: MotionContext) {
       { duration: 1.4, ease: "expo.out", scale: 1.08, yPercent: 14 },
       0.55,
     )
-    .to(".hero .status-pill", { duration: 0.6, opacity: 1 }, 0.2)
-    .from(".hero .status-pill", { duration: 0.6, y: 14 }, 0.2)
     .to(".hero .line", { duration: 1.05, stagger: 0.12, y: 0 }, 0.35)
     .to(".hero-intro", { duration: 0.8, opacity: 1 }, 0.85)
     .from(".hero-intro", { duration: 0.8, y: 20 }, 0.85)
     .to(".hero-actions", { duration: 0.6, opacity: 1 }, 1)
-    .from(
+    // fromTo, not from: the buttons must always end at rest, even if something else
+    // touched their transform before this tween recorded its end values.
+    .fromTo(
       ".hero-actions > *",
-      { duration: 0.6, opacity: 0, stagger: 0.08, y: 16 },
+      { opacity: 0, y: 16 },
+      { duration: 0.6, opacity: 1, stagger: 0.08, y: 0 },
       1,
     )
     .to(
