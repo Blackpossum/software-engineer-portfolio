@@ -26,7 +26,6 @@ html.js .hero .line,
 html.js .case-hero .line {
   transform: translateY(110%);
 }
-html.js .hero .status-pill,
 html.js .hero-intro,
 html.js .hero-actions,
 html.js .hero-stack,
@@ -84,27 +83,24 @@ html.js .hero-card {
   pointer-events: none;
 }
 
-/* ===== cursor (Apple-style adaptive pointer) ===== */
-html.has-cursor,
-html.has-cursor * {
-  cursor: none !important;
+/* ===== cursor: macOS-style arrow and hand in the site colors ===== */
+/* The numbers are the hotspot (arrow tip, fingertip); the keyword is the fallback. */
+html {
+  cursor:
+    url("/cursors/arrow.svg") 5 4,
+    auto;
 }
-.fx-cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 9501;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  pointer-events: none;
-  opacity: 0;
-  background-color: rgba(161, 161, 161, 0.45);
-  will-change: transform;
+a[href],
+button,
+.rv-robot {
+  cursor:
+    url("/cursors/hand.svg") 12 4,
+    pointer;
 }
-html.is-loading .fx-cursor,
-html.is-transition .fx-cursor {
-  opacity: 0 !important;
+:where(p, h1, h2, h3, h4, li, .eyebrow, .mono-label, .case-meta-value):not(
+  a *
+) {
+  cursor: text;
 }
 
 /* ===== svg palette remap (illustrations follow the neutral black theme) ===== */
@@ -472,7 +468,6 @@ html.is-transition .fx-wipe,
   html.js .case-hero .line {
     transform: none;
   }
-  html.js .hero .status-pill,
   html.js .hero-intro,
   html.js .hero-actions,
   html.js .hero-stack,
