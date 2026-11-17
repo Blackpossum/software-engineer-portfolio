@@ -1,53 +1,53 @@
 # Progress
 
-**Next feature: F-02 Tokens, fonts, base reset and shared UI.** F-01 merged on 14 Oct (PR #1); its teach-back is still pending.
+**v1 shipped on 17 Nov 2026 (D-30):** all 7 routes and the full motion layer. Next: visual sign-off per route against the Webflow site, then the metrics below.
 
 Production (D-08): https://software-engineer-portfolio-lovat.vercel.app (`software-engineer-portfolio.vercel.app` belongs to someone else). Previews stay behind Vercel login.
 
-Current stage: 1, Foundation (Days 1 to 2). Day 1 is 14 Oct 2026 (Erwin's call, 14 Oct). Target for full parity: Day 14 = 27 Oct; hard cap Day 21 = 3 Nov.
-
-Timebox (D-09): full parity in 14 days, hard cap 21. Week 1 (Days 1 to 7) must end with a shippable v1 on `vercel.app`.
+The original timebox (D-09) is superseded by D-30.
 
 ## Stages
 
 | Stage                                         | Features     | Days     | State       |
 | --------------------------------------------- | ------------ | -------- | ----------- |
-| 1 Foundation                                  | F-01 to F-03 | 1 to 2   | In progress |
-| 2 Static parity                               | F-04 to F-08 | 3 to 5   | Not started |
-| 3 Motion foundation and navigation (v1 ships) | F-09, F-10   | 6 to 7   | Not started |
-| 4 Signature effects                           | F-11 to F-15 | 8 to 10  | Not started |
-| 5 Polish and ship                             | F-16 to F-19 | 11 to 14 | Not started |
+| 1 Foundation                                  | F-01 to F-03 | 1 to 2   | Done        |
+| 2 Static parity                               | F-04 to F-08 | 3 to 5   | Done        |
+| 3 Motion foundation and navigation (v1 ships) | F-09, F-10   | 6 to 7   | Done        |
+| 4 Signature effects                           | F-11 to F-15 | 8 to 10  | Done        |
+| 5 Polish and ship                             | F-16 to F-19 | 11 to 14 | In progress |
 
-## `fx.js` modules ported (0 of 28)
+## `fx.js` modules ported (26 of 28)
 
-- [ ] lenis (F-09)
-- [ ] progress (F-09)
-- [ ] reveals (F-09)
-- [ ] links (F-10)
-- [ ] enter (F-10)
-- [ ] heroIntro (F-10)
-- [ ] caseIntro (F-10)
-- [ ] loader (F-11)
-- [ ] cursor (F-12)
-- [ ] spotlight (F-12)
-- [ ] split (F-13)
-- [ ] scramble (F-13)
-- [ ] read (F-13)
-- [ ] journey (F-14)
-- [ ] rover (F-15)
-- [ ] minis (F-15)
-- [ ] interactions (F-16)
-- [ ] roll (F-16)
-- [ ] magnetic (F-16)
-- [ ] magneticBase (F-16)
-- [ ] move (F-16)
-- [ ] marquee (F-17)
-- [ ] heroOut (F-17)
-- [ ] work (F-17)
-- [ ] case (F-17)
-- [ ] nav (F-18)
-- [ ] spy (F-18)
-- [ ] copy (F-18)
+`magnetic` and `magneticBase` are not ported: in `fx.js` they only run without the custom cursor, and the cursor is on for every fine pointer, so neither ever ran on the Webflow site. The mobile menu (not a numbered module) is the `Nav` client component.
+
+- [x] lenis (F-09)
+- [x] progress (F-09)
+- [x] reveals (F-09)
+- [x] links (F-10)
+- [x] enter (F-10)
+- [x] heroIntro (F-10)
+- [x] caseIntro (F-10)
+- [x] loader (F-11)
+- [x] cursor (F-12)
+- [x] spotlight (F-12)
+- [x] split (F-13)
+- [x] scramble (F-13)
+- [x] read (F-13)
+- [x] journey (F-14)
+- [x] rover (F-15)
+- [x] minis (F-15)
+- [x] interactions (F-16)
+- [x] roll (F-16)
+- [ ] magnetic (F-16): not applicable, see above
+- [ ] magneticBase (F-16): not applicable, see above
+- [x] move (F-16)
+- [x] marquee (F-17)
+- [x] heroOut (F-17)
+- [x] work (F-17)
+- [x] case (F-17)
+- [x] nav (F-18)
+- [x] spy (F-18)
+- [x] copy (F-18)
 
 ## Routes signed off for visual parity (0 of 7)
 
@@ -75,9 +75,10 @@ None yet.
 
 Every content change after v1 is listed here with the date the Webflow site got the same change.
 
-| Date       | Change                                                                                                                                                                                                 | Webflow                               |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
-| 2026-10-14 | D-23 em dashes in `site.json` (10 fields): section eyebrows use "01 · About" style; hero intro, about paragraph 2, Promptomat milestone note and OSSU repo description reworded with a colon or commas | Pending: Erwin applies after v1 ships |
+| Date       | Change                                                                                                                                                                                                 | Webflow                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
+| 2026-11-17 | Marquee words moved from `fx.js` into `site.json` (`hero.marquee`); kit updated too (D-29)                                                                                                             | Not needed: same words already on Webflow |
+| 2026-10-14 | D-23 em dashes in `site.json` (10 fields): section eyebrows use "01 · About" style; hero intro, about paragraph 2, Promptomat milestone note and OSSU repo description reworded with a colon or commas | Pending: Erwin applies after v1 ships     |
 
 ## Session log
 
@@ -117,3 +118,15 @@ Every content change after v1 is listed here with the date the Webflow site got 
 **Weak spots:** none yet (no Erwin-written code this session).
 
 **Next step:** Erwin: teach-back in PR #1, confirm the Vercel preview on the session log PR, apply the em dash edits to Webflow after v1. Next session: F-02 Tokens, fonts, base reset and shared UI (first feature Erwin codes; Claude Code mentors).
+
+### 2026-11-17 · v1 shipped (D-30 to D-33)
+
+**What changed**
+
+- Home, the five case studies and the 404 render from `site.json` and `cases.json` with the Webflow class names (D-32).
+- Motion layer ported from `fx.js` into `src/motion/` (D-33). Pages are separate documents and the wipe covers the load (D-31).
+- Animated diagrams play only on screen and hold a still frame for reduced motion (`Diagram` component).
+- E2E: every route returns 200 with no console errors, unknown routes 404, the mobile menu and the page wipe work.
+- `archive/manual-rebuild-start` keeps the F-01 state for a from-scratch rebuild.
+
+**Next step:** sign off each route against the Webflow site, record first-load JS and Lighthouse in `docs/design.md` section 9.

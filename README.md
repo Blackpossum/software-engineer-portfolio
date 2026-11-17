@@ -2,7 +2,7 @@
 
 The React rebuild of my portfolio site: Next.js 16 (App Router), React 19 and TypeScript, with a GSAP motion layer. Every route is static, all copy lives in typed JSON, and every pull request runs the full check pipeline.
 
-The rebuild is in progress. The design, decisions and feature specs are in [`docs/`](docs/).
+Live at https://software-engineer-portfolio-lovat.vercel.app. The design, decisions and progress log are in [`docs/`](docs/).
 
 ## Requirements
 
