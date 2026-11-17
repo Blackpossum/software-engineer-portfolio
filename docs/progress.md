@@ -77,6 +77,7 @@ Every content change after v1 is listed here with the date the Webflow site got 
 
 | Date       | Change                                                                                                                                                                                                 | Webflow                                   |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
+| 2026-11-17 | Hero status pill removed (D-35); `hero.status` dropped from `site.json` and the kit                                                                                                                    | Pending: Erwin removes it on Webflow      |
 | 2026-11-17 | Marquee words moved from `fx.js` into `site.json` (`hero.marquee`); kit updated too (D-29)                                                                                                             | Not needed: same words already on Webflow |
 | 2026-10-14 | D-23 em dashes in `site.json` (10 fields): section eyebrows use "01 · About" style; hero intro, about paragraph 2, Promptomat milestone note and OSSU repo description reworded with a colon or commas | Pending: Erwin applies after v1 ships     |
 
@@ -130,3 +131,9 @@ Every content change after v1 is listed here with the date the Webflow site got 
 - `archive/manual-rebuild-start` keeps the F-01 state for a from-scratch rebuild.
 
 **Next step:** sign off each route against the Webflow site, record first-load JS and Lighthouse in `docs/design.md` section 9.
+
+### 2026-11-17 · macOS cursor (D-34, D-35)
+
+- The custom disc cursor is replaced by CSS cursors: a lime macOS-style arrow and hand with a black outline, and the I-beam over text. The hover pull and card lift are kept (`src/motion/pointer.ts`).
+- The hero status pill is gone; the contact card keeps its own.
+- Fix: the hero buttons use `fromTo`, so they always end at rest after the intro (one of them could stay 16px low).
