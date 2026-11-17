@@ -63,7 +63,6 @@ export const SiteSchema = z.object({
     // Decorative tech band under the hero (aria-hidden).
     marquee: z.array(Text).min(1),
     stack: Text,
-    status: Text,
   }),
   journey: Section("journey").extend({
     callout: z.object({ date: Text, text: Text }),
