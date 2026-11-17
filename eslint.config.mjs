@@ -52,6 +52,10 @@ const eslintConfig = defineConfig([
       "unicorn/filename-case": "off",
       "sonarjs/todo-tag": "off",
       "sonarjs/no-hardcoded-password": "off",
+
+      // Pages are separate documents on purpose (D-31): internal links are plain <a>, and
+      // the motion layer plays the wipe while the browser loads the next page.
+      "@next/next/no-html-link-for-pages": "off",
     },
   },
 

@@ -60,6 +60,8 @@ export const SiteSchema = z.object({
     image: Image,
     intro: Text,
     location: Text,
+    // Decorative tech band under the hero (aria-hidden).
+    marquee: z.array(Text).min(1),
     stack: Text,
     status: Text,
   }),
